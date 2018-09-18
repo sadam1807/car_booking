@@ -1,0 +1,32 @@
+{
+  "name": "car_booking",
+  "version": "1.0.0",
+  "description": "car booking system",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sadam1807/car_booking.git"
+  },
+  "author": "sadam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sadam1807/car_booking/issues"
+  },
+  "homepage": "https://github.com/sadam1807/car_booking#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.15"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
