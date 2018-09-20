@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var routes = require('./server/routes.js');
 const app = express();
 const db =require('./server/config/key').mongoURI;
 // const items = require('./routes/api/items');
@@ -17,7 +18,6 @@ mongoose
 const port = process.env.PORT || 5000;
 
 // use routes
-
-// app.use('/api/items',items);
+app.use('/api/v1', routes);
 
 app.listen(port ,() => console.log(`server started at port ${port}`));

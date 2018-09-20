@@ -21,10 +21,14 @@
   },
   "homepage": "https://github.com/sadam1807/car_booking#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
     "express": "^4.16.3",
-    "mongoose": "^5.2.15"
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.15",
+    "mongoose-unique-validator": "^2.0.1",
+    "mongoose-validator": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
