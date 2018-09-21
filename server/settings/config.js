@@ -3,7 +3,7 @@ var env = 'development'; //Make this dynamic to take care of production
 
 var config = {
   production: {
-
+      
   },
   development: {
     auth: {

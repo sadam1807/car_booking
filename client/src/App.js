@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from "react";
+import {AdminRoute, CustomerRoute, PublicRoute} from "./Component/Common/Routes"
+import Login  from "./Component/Common/Login";
+import {NotFound} from "./Component/Common/NotFound";
+import {CustomerPanel} from "./Component/Customer/CustomerPanel";
+import {AdminPanel} from "./Component/Admin/AdminPanel.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+import {
+	BrowserRouter,
+	Switch
+} from 'react-router-dom'
+
+class App extends React.Component {
+	render() {
+		return (
+			<BrowserRouter>
+				<Switch>
+					<PublicRoute exact path="/" key="root" component={Login}/>
+					<PublicRoute exact path="/login" key="login" component={Login}/>
+					<AdminRoute  path="/admin" key="admin" component={AdminPanel}/>
+					<CustomerRoute  path="/customer" key="customer" component={CustomerPanel}/>
+					<PublicRoute component={NotFound}/>
+				</Switch>
+			</BrowserRouter>
+		)
+	}
 }
 
 export default App;
