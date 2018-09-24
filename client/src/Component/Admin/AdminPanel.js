@@ -1,25 +1,22 @@
 import React from "react";
 import Auth from '../Common/Auth';
 import {Redirect, BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
+import Header from '../Common/Header';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 export class AdminPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          isLoggedIn: false
+          isLoggedIn: false,
+          isOpen: false
         }
       }
 
-      componentWillMount() {
-        if(Auth.isAuthenticated()) {
-          this.setState({isLoggedIn: true});
-        }
-      }
-    
-    logout = () => {
-        Auth.removeToken();
-        this.setState({isLoggedIn: false});
+    componentWillMount() {
+    if(Auth.isAuthenticated()) {
+        this.setState({isLoggedIn: true});
+    }
     }
       
     render() {
@@ -29,12 +26,21 @@ export class AdminPanel extends React.Component {
 
 		return (
             <div>
-                <h1>AdminPanel</h1>
-                <div>
-                <button  onClick={this.logout}>
-                      Logout
-                </button>
-                </div>  
+               <Header />
+                <Nav vertical >
+                <NavItem >
+                    <NavLink href="#">Add CAR</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href="#">List CARS</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href="#">Add Models</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink  href="#">Orders</NavLink>
+                </NavItem>
+                </Nav>
             </div>    
         )
     }    
