@@ -1,8 +1,10 @@
 import React from 'react';
-import axios from "axios";
 import {Redirect} from 'react-router-dom';
 import { AvForm, AvFeedback, AvGroup, AvInput} from 'availity-reactstrap-validation';
 import { Button,  Col, FormGroup  } from 'reactstrap';
+import{ connect } from 'react-redux';
+import { authUser } from '../../Redux/actions/authActions.js';
+import PropTypes from 'prop-types';
 import Auth from './Auth';
 import async from 'async';
 import './Login.css'
@@ -20,28 +22,26 @@ class Login extends React.Component{
         this.setState({isLoggedIn: true})
       }
     }
+    
+    componentWillReceiveProps(nextProps)
+    {
+      const response = nextProps.auth.authResponse[0];
+        if(response.auth)
+        {
+          alert(response.message)
+          Auth.setToken(response.token);
+            this.setState({
+              isLoggedIn: true
+            });
+          }
+        else {
+            alert(response);
+          }
+      }
 
     
     login = (values) => {
-      var self = this;
-      axios.post('/api/v1/users/login', {
-				email: values.email,
-				password: values.password
-			})
-			.then(function(response) {
-				if(response.data.auth) {
-					alert(response.data.message)
-					Auth.setToken(response.data.token);
-					self.setState({
-						isLoggedIn: true
-          });
-				}
-			})
-			.catch(function(error) {
-				if(error.response) {
-          alert(error.response.data.message)
-				}
-			});
+      this.props.authUser(values);
     }
 
     handleSubmit = (event, errors, values) => {
@@ -56,7 +56,7 @@ class Login extends React.Component{
     }
 
     render() {
-
+      
       if(this.state.isLoggedIn) {
         console.log(Auth.getUserType());
         const userType = Auth.getUserType();
@@ -102,6 +102,13 @@ class Login extends React.Component{
         );
       }
 }
+Login.propTypes = {
+  authUser :PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
 
 
-export default Login;
+export default connect( mapStateToProps ,{authUser})(Login);

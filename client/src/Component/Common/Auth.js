@@ -8,7 +8,6 @@ const Auth = {
   getToken : () => {
     const token =  localStorage.getItem('token');
     if(!token) {
-      console.log('token expires')
     return false;
     }
     return token;
