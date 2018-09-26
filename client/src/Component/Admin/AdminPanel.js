@@ -1,8 +1,31 @@
 import React from "react";
 import Auth from '../Common/Auth';
-import {Redirect, BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Redirect, BrowserRouter as Router, Route, Link ,Switch} from 'react-router-dom';
 import Header from '../Common/Header';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { 
+    Container, 
+    Row, 
+    Col,
+    Button }  from 'reactstrap';
+
+
+const ListCar = (props) => {
+    return (
+      <div>
+        <h2>All Cars</h2>
+        <Button type="primary">Primary</Button>
+      </div>
+    )
+  }
+ 
+const AddCar = (props) => {
+    return (
+      <div>
+        <h2>ADD Cars</h2>
+        <Button type="primary">Primary</Button>
+      </div>
+    )
+}  
 
 export class AdminPanel extends React.Component {
     constructor(props) {
@@ -12,35 +35,50 @@ export class AdminPanel extends React.Component {
           isOpen: false
         }
       }
-
+    
     componentWillMount() {
-    if(Auth.isAuthenticated()) {
-        this.setState({isLoggedIn: true});
-    }
+        if(Auth.isAuthenticated()) {
+            this.setState({isLoggedIn: true});
+        }
+        // let pathname = this.props.location.pathname;
+        // switch (pathname) {
+        //     case '/admin/hospitals/add':
+        //       this.setState({
+        //         selectedSubMenuKey: "sub1",
+        //         selectedMenuItemKey: '2'
+        //       });
+        //       break;
+        //     default:
+        //     this.setState({
+        //     selectedSubMenuKey: "sub1",
+        //     selectedMenuItemKey: '1'
+        //     });
+        // }      
     }
       
+    
+
+
     render() {
         if(!this.state.isLoggedIn) {
             return(<Redirect to={'/login'}/>)
         }
-
+        
+       
 		return (
             <div>
+             <Container>   
                <Header />
-                <Nav vertical >
-                <NavItem >
-                    <NavLink href="#">Add CAR</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href="#">List CARS</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href="#">Add Models</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink  href="#">Orders</NavLink>
-                </NavItem>
-                </Nav>
+               <Row>
+                   <Col xs="8">
+                    <Switch>
+                     <Route path="/admin" exact component={ListCar} />    
+                     <Route  path='/admin/car/add' component={AddCar} />
+                    </Switch> 
+                   </Col> 
+                   <Col xs="4">left Side bar</Col>
+               </Row>
+             </Container>  
             </div>    
         )
     }    
