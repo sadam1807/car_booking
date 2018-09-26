@@ -1,7 +1,9 @@
 import React from "react";
 import Auth from '../Common/Auth';
-import {Redirect, BrowserRouter as Router, Route, Link ,Switch} from 'react-router-dom';
+import {Redirect,Route} from 'react-router-dom';
+import LoadingScreen from 'react-loading-screen'
 import Header from '../Common/Header';
+import '../Common/Login.css'
 import { 
     Container, 
     Row, 
@@ -9,7 +11,7 @@ import {
     Button }  from 'reactstrap';
 
 
-const ListCar = (props) => {
+const ListCar = () => {
     return (
       <div>
         <h2>All Cars</h2>
@@ -18,12 +20,13 @@ const ListCar = (props) => {
     )
   }
  
-const AddCar = (props) => {
+const AddCar = () => {
     return (
       <div>
         <h2>ADD Cars</h2>
         <Button type="primary">Primary</Button>
       </div>
+     
     )
 }  
 
@@ -32,51 +35,42 @@ export class AdminPanel extends React.Component {
         super(props);
         this.state = {
           isLoggedIn: false,
-          isOpen: false
+          isOpen: false,
+          loader :true
         }
       }
     
     componentWillMount() {
         if(Auth.isAuthenticated()) {
             this.setState({isLoggedIn: true});
-        }
-        // let pathname = this.props.location.pathname;
-        // switch (pathname) {
-        //     case '/admin/hospitals/add':
-        //       this.setState({
-        //         selectedSubMenuKey: "sub1",
-        //         selectedMenuItemKey: '2'
-        //       });
-        //       break;
-        //     default:
-        //     this.setState({
-        //     selectedSubMenuKey: "sub1",
-        //     selectedMenuItemKey: '1'
-        //     });
-        // }      
+        } 
+
+        setTimeout(() => {
+            this.setState({ loader: false });
+          }, 1500);
     }
       
-    
-
-
     render() {
         if(!this.state.isLoggedIn) {
             return(<Redirect to={'/login'}/>)
         }
-        
-       
-		return (
+        return (
             <div>
              <Container>   
                <Header />
                <Row>
-                   <Col xs="8">
-                    <Switch>
-                     <Route path="/admin" exact component={ListCar} />    
-                     <Route  path='/admin/car/add' component={AddCar} />
-                    </Switch> 
+                   <Col  md="8"  >
+                    <LoadingScreen
+                        loading={this.state.loader}
+                        spinnerColor='#9ee5f8'
+                        textColor='#676767'
+                        text='Loading'
+                    > 
+                       <Route path="/admin" exact component={ListCar} />    
+                       <Route  path='/admin/car/add' component={AddCar} />
+                    </LoadingScreen> 
                    </Col> 
-                   <Col xs="4">left Side bar</Col>
+                   <Col  md="4" >left sidebar</Col>
                </Row>
              </Container>  
             </div>    

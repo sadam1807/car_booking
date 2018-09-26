@@ -1,6 +1,6 @@
 import React from "react";
 import Auth from '../Common/Auth';
-import {Redirect, BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -57,7 +57,7 @@ class Header extends React.Component {
                                                <Link to='/admin/car/add'>Add Car</Link>
                                             </DropdownItem>
                                             <DropdownItem>
-                                               <Link to='/admin' activeClassName="active">List Cars</Link>
+                                               <Link to='/admin/' >List Cars</Link>
                                             </DropdownItem>
                                             </DropdownMenu>
                                     </UncontrolledDropdown>

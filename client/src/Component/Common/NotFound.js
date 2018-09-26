@@ -7,7 +7,7 @@ export class NotFound extends React.Component {
   render() {
     return(
       // <Card title="404! Page Not Found!" extra={<a href="#">More</a>} style={{ width: 300 }}>
-          <p>Something went wrong! We can't find your page.</p>
+          <h1>Something went wrong! We can't find your page.</h1>
       // </Card>
     )
   }
