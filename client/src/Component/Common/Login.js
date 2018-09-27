@@ -94,7 +94,7 @@ class Login extends React.Component{
           </AvGroup>
           <FormGroup  row>
             <Col sm={{ size: 10}}>
-              <Button color="success" className="login-form-button" >Login</Button>
+              <Button color="success" className="button" >Login</Button>
             </Col>
           </FormGroup>
           </AvForm>
