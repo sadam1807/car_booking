@@ -1,8 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var user = require('../server/controllers/users.js');
-
+var car = require('../server/controllers/cars.js');
 router.post('/users/login', user.login);
 router.post('/users/register', user.register);
-
+router.post('/cars/add', car.addCar);
+router.get('/cars/get/all', car.getAllCars);
+router.get('/car/get/:id', car.getCarById);
+router.patch('/car/update/:id', car.updateCarById);
+router.delete('/car/delete/:id', car.deleteCarById);
 module.exports = router;
