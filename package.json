@@ -27,10 +27,13 @@
     "concurrently": "^4.0.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "express-fileupload": "^1.0.0-alpha.1",
+    "fileupload": "^1.0.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.15",
     "mongoose-unique-validator": "^2.0.1",
-    "mongoose-validator": "^2.1.0"
+    "mongoose-validator": "^2.1.0",
+    "underscore": "^1.9.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

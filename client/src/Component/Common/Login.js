@@ -46,7 +46,6 @@ class Login extends React.Component{
 
     handleSubmit = (event, errors, values) => {
       if(errors.length===0) {
-        console.log(values);
         async.waterfall(
           [
             async.apply(this.login, values),

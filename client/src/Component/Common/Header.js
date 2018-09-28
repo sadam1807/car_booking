@@ -30,6 +30,7 @@ class Header extends React.Component {
      logout = () => {
         Auth.removeToken();
         this.setState({isLoggedIn: false});
+        window.location.reload();
     }
 
     toggle = () => {
@@ -39,6 +40,7 @@ class Header extends React.Component {
     }
       
     render() {
+        
 		return (
             <div>
                <Row>

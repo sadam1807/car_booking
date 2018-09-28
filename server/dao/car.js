@@ -11,8 +11,10 @@ module.exports = {
 
 
 function addCar(data, next) {
+	delete data.thumbnailImageFile;
+	delete data.sliderImageFile;
 	var imgTypeExpression = /\.(gif|jpg|jpeg|tiff|png)$/i;
-	if(!(imgTypeExpression).test(data.sliderImage)||!(imgType).test(data.thumbnailImage)){
+	if(!(imgTypeExpression).test(data.sliderImage)||!(imgTypeExpression).test(data.thumbnailImage)){
 		return next(createError(422, "Slider and Thumbnail image only supports image extensions"));
 	 }
    carModel.Car.create(data)
